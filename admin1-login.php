@@ -14,7 +14,7 @@ if(isset($_POST['submit'])){
     
     $row = mysqli_fetch_array($result);
     $_SESSION['user_name'] = $row['login_name'];
-    header('location:admin1-home.php');
+    header('location:admin1.php');
   }else{
      $error[] = '
     <div class="alert alert-danger alert-dismissible fade show" role="alert">

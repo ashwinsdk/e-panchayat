@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>User Home</title>
+        <title>Tehsildar Home</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
@@ -42,20 +42,20 @@
                                         <p class="mb-1"><b>Sell All Grievances</b> Click here see all the grievances made by other users. 
                                         
                                     </p><br>
-                                        <div class="row justify-content-center"><a class="btn btn-outline-primary rounded-pill"  href="admin-home.php">See All</a></div>
+                                        <div class="row justify-content-center"><a class="btn btn-outline-primary rounded-pill"  href="admin1-home.php">See All</a></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Testimonial 1-->
+
+                        <!-- Testimonial -->
                         <div class="card mb-4">
                             <div class="card-body p-4">
                                 <div class="d-flex">
                                     <div class="ms-4">
-                                        <p class="mb-1"><b>Sarpanch Grievance</b> See the pending Grievance from Sarpanch. And Approve or Disapprove it.</p><br>
-                                        <div class="row justify-content-center"><a class="btn btn-outline-primary"  href="g.php">Grievances</a></div>
-                                        
+                                        <p class="mb-1"><b>Check Funds</b> Check your crypto wallet balance</p><br>
+                                        <div class="row justify-content-center"><a class="btn btn-outline-primary"  href="fund.php">Check Balance</a></div>
                                     </div>
                                 </div>
                             </div>
@@ -72,6 +72,8 @@
             
         </main>
         <!-- Bootstrap core JS-->
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+    <script src="js/app.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>

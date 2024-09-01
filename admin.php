@@ -47,19 +47,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Testimonial 1-->
-                        <div class="card mb-4">
-                            <div class="card-body p-4">
-                                <div class="d-flex">
-                                    <div class="ms-4">
-                                        <p class="mb-1"><b>Grievance Approved by Tehsildar</b> See the pending Grievance from Sarpanch. And Approve or Disapprove it.</p><br>
-                                        <div class="row justify-content-center"><a class="btn btn-outline-primary"  href="g.php">Grievances</a></div>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     
                 </div>
                 
