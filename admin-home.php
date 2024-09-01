@@ -3,36 +3,25 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 require "mysqldbconn.php";
-
-if(isset($_POST['submit'])){
-
-$name=$_POST['name'];
-$grievance_id=$_POST['grievance_id'];
-$status=$_POST['status'];
-
-
-$sql="insert into pendings (name, grievance_id, status) values('$name','$grievance_id','$status')";
-
-$query=mysqli_query($conn,$sql);
-echo '<div class="alert alert-success">
-<b>Successfully!</b> submitted..
-</div>';
-}
-
-$sqlget = "select * from grievance";
+$sqlget = "select * from griveance";
 $sqldata = mysqli_query($conn, $sqlget);
 
-$sql_acc = "select count(grievance_id) from grievance where status = 'ACCEPTED'";
+$sql_acc = "select count(griveance_id) from griveance where gstatus = 'Approved'";
 $query_acc = mysqli_query($conn, $sql_acc);
 $row_acc= mysqli_fetch_assoc($query_acc);
 
-$sql_rej = "select count(grievance_id) from grievance where status = 'REJECTED'";
+$sql_rej = "select count(griveance_id) from griveance where gstatus = 'Disapporved'";
 $query_rej = mysqli_query($conn, $sql_rej);
 $row_rej= mysqli_fetch_assoc($query_rej);
 
-$sql_len = "select count(grievance_id) from grievance";
+$sql_len = "select count(griveance_id) from griveance";
 $query_len = mysqli_query($conn, $sql_len);
 $row_len= mysqli_fetch_assoc($query_len);
+
+
+$sql_pend = "select count(griveance_id) from griveance where gstatus = 'Pending'";
+$query_pend = mysqli_query($conn, $sql_pend);
+$row_pend= mysqli_fetch_assoc($query_pend);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +34,7 @@ $row_len= mysqli_fetch_assoc($query_len);
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dashboard</title>
+    <title>Sarpanch home</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -63,34 +52,7 @@ $row_len= mysqli_fetch_assoc($query_len);
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin-home.php">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="">E</i>
-                </div>
-                <div class="sidebar-brand-text mx-3">-Panchayat</div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="admin-home.php">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Grievances</span></a>
-            </li>
-
-            
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-        </ul>
+        
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -98,76 +60,16 @@ $row_len= mysqli_fetch_assoc($query_len);
 
             <!-- Main Content -->
             <div id="content">
-
-                <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-
-                    <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
-
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            
-                        </li>
-
-                        
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Sarpanch </span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="admin-login.php" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
-                            </div>
-                        </li>
-
-                    </ul>
-
-                </nav>
+              
+           <!-- Navigation-->
+           <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container px-5">
+                    <a class="navbar-brand" role="button">Sarpanch</a>
+                    <a type="button" href="index.php" class="btn btn-outline-light rounded-pill">Logout</a>
+                  </div>
+                </div>
+                
+            </nav><br><br>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -186,7 +88,7 @@ $row_len= mysqli_fetch_assoc($query_len);
                                                 Total Grievances</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                 <?php
-                                                 echo $row_len['count(grievance_id)'];
+                                                 echo $row_len['count(griveance_id)'];
                                                 ?>
                                             </div>
                                         </div>
@@ -208,7 +110,7 @@ $row_len= mysqli_fetch_assoc($query_len);
                                                 Accepted Grievances</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                 <?php
-                                                 echo $row_acc['count(grievance_id)'];
+                                                 echo $row_acc['count(griveance_id)'];
                                                 ?>
                                             </div>
                                         </div>
@@ -223,15 +125,37 @@ $row_len= mysqli_fetch_assoc($query_len);
 
                         <!-- Pending Requests Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-danger shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                                Rejected Grievances</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <?php
+                                                 echo $row_rej['count(griveance_id)'];
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pending Requests Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-warning shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Rejected Grievances</div>
+                                                Pending</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                 <?php
-                                                 echo $row_rej['count(grievance_id)'];
+                                                 echo $row_pend['count(griveance_id)'];
                                                 ?>
                                             </div>
                                         </div>
@@ -255,34 +179,61 @@ $row_len= mysqli_fetch_assoc($query_len);
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Subject</th>
-                                            <th>State</th>
-                                            <th>Panchayat</th>
-                                            <th>Grievance ID</th>
-                                            <th>Status</th>
-                                            <th>Edit</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                                <thead>
+                    <tr>
+                     <th>Grievance Id</th>
+                      <th>Petitioner Name</th>
+                      <th>Subject</th>
+                      <th>Sarpanch Status</th>
+                      <th>Tehsildar Status</th>
+                      <th>View</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    $sqlget = "select * from griveance";
+                    $sqldata = mysqli_query($conn, $sqlget);
+                    $row = mysqli_fetch_assoc($sqldata);
+                 
+                    while($row = mysqli_fetch_assoc($sqldata)){
+                      echo "<tr><td>";
+                      echo $row['griveance_id'];
+                      echo "</td><td>";
+                      echo $row['petitioner'];
+                      echo "</td><td>";
+                      echo $row['subject'];
+                      echo "</td><td>";
+                      echo $row['gstatus'];
+                      echo "</td><td>";
+                      echo $row['tstatus'];
+                      echo "</td><td>";
+                      $griveance_id=$row['griveance_id'];
+                      $petitioner=$row['petitioner'];
+                      $subject=$row['subject'];
+                      $status=$row['gstatus'];
+                      echo '<form method="GET" action="view.php">
+                      <input type="submit" class="btn btn-outline-dark rounded-pill" value="View">
+                      <input name="griveance_id" type="hidden" value='.$griveance_id.'>
+                      </form>
+                      ';
+                      echo "</td></tr>";
+                    }
+                      ?>
+                  </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                                         <?php
-                                        while($row = mysqli_fetch_assoc($sqldata)){
+                                        while($row_pen = mysqli_fetch_assoc($query_pend)){
                                             echo "<tr><td>";
-                                            echo $row['petitioner'];
+                                            echo $row_pen['name'];
                                             echo "</td><td>";
-                                            echo $row['subject'];
+                                            echo $row_pen['griveance_id'];
                                             echo "</td><td>";
-                                            echo $row['state'];
+                                            echo $row_pen['status'];
                                             echo "</td><td>";
-                                            echo $row['town_panchayat'];
-                                            echo "</td><td>";
-                                            echo $row['grievance_id'];
-                                            echo "</td><td>";
-                                            echo $row['status'];
-                                            echo "</td><td>";
-                                            echo "<a href='updatedata.php?grievance_id=".$row["grievance_id"]."'>edit</a>";
+                                            echo "<a href='updatedata_pen.php?griveance_id=".$row_pen["griveance_id"]."'>edit</a>";
                                             echo "</td></tr>";
                                         }
                                         ?>
@@ -292,51 +243,11 @@ $row_len= mysqli_fetch_assoc($query_len);
                         </div>
                     </div>
 
-                    <h1 class="h3 mb-2 text-gray-800">Pending Form to Tehsildar</h1>
 
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-body">
-                        <div class="row gx-5 justify-content-center">
-                            <div class="col-lg-8 col-xl-6">
-                              <form class="row g-3 needs-validation" method="POST">
-                                <div class="col-12">
-                                  <label for="yourName" class="form-label">Sarpanch's Name</label>
-                                  <input type="text" name="name" class="form-control" id="yourName" required>
-                                  <div class="invalid-feedback">Please, enter your name!</div>
-                                </div>
-                                <div class="col-12">
-                                  <label for="yourName" class="form-label">Grievance Id</label>
-                                  <input type="text" name="grievance_id" class="form-control" id="yourName" required>
-                                  <div class="invalid-feedback">Please, enter grievance_id!</div>
-                                </div>
-                                <div class="col-12">
-                                  <label for="yourName" class="form-label">Status</label>
-                                  <input type="text" name="status" class="form-control" id="yourName" style="height: 10rem;" required>
-                                  <div class="invalid-feedback">Please, enter Status!</div>
-                                </div>
-                                  
-                                <div class="col-12">
-                                  <button class="btn btn-primary w-100" type="submit" name="submit">Submit</button>
-                                </div>
-                              </form>
-            
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
 
             </div>
-
-            <!-- Footer 
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; E-Panchayat 2022</span>
-                    </div>
-                </div>
-            </footer>
-             End of Footer -->
 
         </div>
         <!-- End of Content Wrapper -->
@@ -363,7 +274,7 @@ $row_len= mysqli_fetch_assoc($query_len);
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="admin-login.php">Logout</a>
+                    <a class="btn btn-primary" href="admin1-login.php">Logout</a>
                 </div>
             </div>
         </div>

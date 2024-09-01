@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Track input</title>
+        <title>Modern Business - Start Bootstrap Template</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
@@ -13,70 +13,78 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
     </head>
-    <body class="d-flex flex-column h-100">
+    <body class="d-flex flex-column">
         <main class="flex-shrink-0">
-            <!-- Navigation-->
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+           
+            <!-- Header-->
+            <header class="py-5">
                 <div class="container px-5">
-                    <a class="navbar-brand" href="user-home.php">E-Panchayat</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                            <li class="nav-item"><a class="nav-link" href="user-home.php">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#">My Profile</a></li>
-                            <li class="nav-item"><a class="nav-link" href="about.php">My Grievance</a></li>
-                        </ul>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 col-xxl-6">
+                            <div class="text-center my-5">
+                                <h1 class="fw-bolder mb-3">Grievances</h1>
+                                <p class="lead fw-normal text-muted mb-4"></p>
+                                <div class="card">
+              <div class="card-body">
+                <!--<h5 class="card-title">Students</h5>-->
+                <!-- Table with stripped rows -->
+                <div class="table-responsive">
+                <table class="table datatable">
+                  <thead>
+                    <tr>
+                      <th>Grievance Id</th>
+                      <th>Petitioner Name</th>
+                      <th>Subject</th>
+                      <th>Sarpanch Status</th>
+                      <th>Tehsildar Status</th>
+                    </tr>
+                  </thead>
+                  <tbody><?php
+                    ini_set('display_errors', 1);
+                    ini_set('display_startup_errors', 1);
+                    error_reporting(E_ALL);
+                    require "mysqldbconn.php";
+                    $grievance_id=$_GET['grievance_id'];
+                    if($grievance_id==''){
+                        echo "<div class='alert alert-danger'>
+                        NO ID FOUND
+                        </div>";
+                        exit;
+                    }
+                    $sqlget = "select * from griveance where griveance_id = '$grievance_id'";
+                     $sqldata = mysqli_query($conn, $sqlget);
+                     $row = mysqli_fetch_assoc($sqldata);
+                     if($row){
+                      echo "<tr><td>";
+                      echo $row['griveance_id'];
+                      echo "</td><td>";
+                      echo $row['petitioner'];
+                      echo "</td><td>";
+                      echo $row['subject'];
+                      echo "</td><td>";
+                      echo $row['gstatus'];
+                      echo "</td><td>";
+                      echo $row['tstatus'];
+                      echo "</td></tr>";
+                    }
+                      ?>
+                  </tbody>
+                </table>
+                </div>
+                <!-- End Table with stripped rows -->
+
+              </div>
+
+            </div><br>
+                                <a class="btn btn-outline-dark rounded-pill btn-lg" href="user-home.php">Back</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </nav>
+            </header>
+
             
-            <!-- Blog preview section-->
-            <section class="py-5">
-                <div class="container px-5 my-5">
-                <?php
-                 ini_set('display_errors', 1);
-                 ini_set('display_startup_errors', 1);
-                 error_reporting(E_ALL);
-                 require "mysqldbconn.php";
-                 $grievance_id=$_GET['grievance_id'];
-                 if($grievance_id==''){
-                     echo "<div class='alert alert-danger'>
-                     NO ID FOUND
-                     </div>";
-                     exit;
-                 }
-                 $sqlget = "select * from grievance where grievance_id =".$grievance_id;
-                 
-                 $sqldata = mysqli_query($conn, $sqlget);
-                 //var_dump($sqldata);
-                 $row = mysqli_fetch_assoc($sqldata);
-                 if($row){
-                     echo "<table class='table '>";
-                     echo "<tr><th>Grievance Id</th><th>Subject</th><th>Petitioner Name</th><th>State</th><th>District</th><th>Zone</th><th>Village Panchayat</th><th>Status</th></tr>";
-                     echo "<tr><td>";
-                     echo $row['grievance_id'];
-                     echo "</td><td>";
-                     echo $row['subject'];
-                     echo "</td><td>";
-                     echo $row['petitioner'];
-                     echo "</td><td>";
-                     echo $row['state'];
-                     echo "</td><td>";
-                     echo $row['district'];
-                     echo "</td><td>";
-                     echo $row['zone'];
-                     echo "</td><td>";
-                     echo $row['village_panchayat'];
-                     echo "</td><td>";
-                     echo $row['status'];
-                     echo "</td></tr>";
-                     echo "</table>";
-                 }
-                                 
-                ?>
-                    
-                </div>
-            </section>
+            
         </main>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -84,3 +92,4 @@
         <script src="js/scripts.js"></script>
     </body>
 </html>
+

@@ -3,14 +3,14 @@
 $server='localhost';
 $usr='root';
 $pass='';
-$db = "panchayat";
+$db = "e-panchayat";
 
 /*
 $server='ec2-44-205-112-253.compute-1.amazonaws.com
 ';
-$usr='rdujmpylzwsjrn';
-$pass='ab7121bd2e33acf16afc59d03b326604675eaeeb08099aace188ec57b82c078f';
-$db = "d9c1orqblrsual";
+$usr='if0_34394894';
+$pass='Sudhakarfeb27';
+$db = "if0_34394894_panchayat";
 */
 $conn = mysqli_connect($server,$usr,$pass,$db);
 if(!$conn){
