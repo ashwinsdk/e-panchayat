@@ -94,7 +94,7 @@ Provides a detailed explanation of how payment transactions will be conducted us
 * [HTML](https://html.com/)
 * [CSS](https://css.com/)
 * [Bootstrap](https://www.Bootstrap.com/)
-* [PhP](https://www.php.org/)
+* [PHP](https://www.php.org/)
 * [MetaMask](https://MetaMask.com/)
 
 
