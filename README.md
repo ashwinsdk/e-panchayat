@@ -11,7 +11,6 @@
 * [Problem Statement](#Problem-Statement)
 * [Objectives of the e-Panchayat Mission](#Objectives-of-the-e-Panchayat-Mission)
 * [Proposed Solution: Online Portal/Application for Grievance Redressal](#Proposed-Solution-Online-Portal/Application-for-Grievance-Redressal)
-* [Blockchain Integration for Secure Payment Transactions](#Blockchain-Integration-for-Secure-Payment-Transactions)
 * [Conclusion:](#)
 
 # Introduction
@@ -73,34 +72,9 @@ This section provides an overview of the proposed digital solution—a web porta
 ## Benefits to Village People:
 It highlights the direct benefits of the portal to rural citizens, including ease of access to services, reduced travel to government offices, faster resolution of issues, and overall improved interaction with their local government.
 
-
-# Blockchain Integration for Secure Payment Transactions
-
-## Use of Blockchain Technology in e-Panchayat:
-This section introduces blockchain technology as a secure and transparent method for handling transactions within the e-Panchayat system. It discusses how blockchain’s decentralized nature ensures that all transactions are recorded in an immutable ledger, providing a higher level of security.
-
-## Overview of MetaMask for Public-to-Taluk Payment Transactions:
-Explains how MetaMask, a popular cryptocurrency wallet, is integrated into the e-Panchayat system for handling payments between the public and the taluk (local government). It covers how citizens can use MetaMask to make secure payments for services and fees.
-
-## Benefits of Blockchain: 
-Transparency, Security, and Efficiency:
-Outlines the advantages of using blockchain, such as increased transparency in financial transactions, enhanced security against fraud, and improved efficiency in processing payments.
-
-## Process Flow for Payment Transactions using MetaMask:
-Provides a detailed explanation of how payment transactions will be conducted using MetaMask, from initiating a payment to confirmation and receipt generation. It also discusses how the system ensures that transactions are recorded and verified on the blockchain.
-
-
 ## Built With
 * [HTML](https://html.com/)
 * [CSS](https://css.com/)
 * [Bootstrap](https://www.Bootstrap.com/)
 * [PHP](https://www.php.org/)
-* [MetaMask](https://MetaMask.com/)
 
-
-## Authors
-
-* **Vishwa** - *Comp Sci Student*  - *Building Frontend and Backend Development*
-* **Ashwin** - *Comp Sci. Student* - *Building Frontend and Backend Development*
-* **Shishir** - *Comp Sci. Student* -*Frontend*
-* **Madhav** - *Comp Sci. Student* - *Frontend*
